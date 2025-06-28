@@ -2,6 +2,13 @@ package com.euphony.lava_chicken_music_disc;
 
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.EntityTypePredicate;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -39,7 +46,7 @@ public class LavaChickenMusicDisc {
                             new EntityPredicate.Builder()
                                     .flags(new EntityFlagsPredicate.Builder().setIsBaby(true))
                                     .vehicle(new EntityPredicate.Builder()
-                                            .of(EntityType.CHICKEN)
+                                            .entityType(new EntityTypePredicate(HolderSet.direct(EntityType.CHICKEN.builtInRegistryHolder())))
                                     )
                     ))
                     .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
